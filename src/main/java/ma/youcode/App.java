@@ -1,10 +1,12 @@
 package ma.youcode;
 
 
-public class App 
+import ma.youcode.utils.Printer;
+
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Printer.into();
     }
 }
