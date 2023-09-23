@@ -4,10 +4,10 @@ public interface ICardService {
     public int[][] creer_cartes();
     public int[][] melanger_cartes(int[][] cartes);
     public int[][][] piocher_n_cartes(int[][] cartes, int n);
-    public int[][] defausser_cartes(int[][] pioche, int[][] cartes_a_defausses);
+    public int[][] defausser_cartes(int[][]... cards);
 
     default int getCardValue(int[] card){
-        switch (card[1]){
+        switch (card[0]){
             case 1 -> {
                 return 11;
             }
@@ -15,7 +15,7 @@ public interface ICardService {
                 return 10;
             }
             default -> {
-                return card[1];
+                return card[0];
             }
         }
     }
