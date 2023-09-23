@@ -9,6 +9,7 @@ public class CardService implements ICardService {
 
     @Override
     public int[][] creer_cartes() {
+        System.out.println("[CARDS CREATION...]");
         int CARDS_NUMBER = 13;
         int COLORS_NUMBER = 4;
         int[][] table = new int[CARDS_NUMBER*COLORS_NUMBER][2];
@@ -24,9 +25,11 @@ public class CardService implements ICardService {
 
     @Override
     public int[][] melanger_cartes(int[][] cartes) {
-        int[][] shuffledCards = new int[cartes.length][];
+        System.out.println("[CARDS SHUFFLING...]");
+        int CARDS_NUMBER = cartes.length;
+        int[][] shuffledCards = new int[CARDS_NUMBER][];
         int index = 0;
-        while (index<cartes.length){
+        while (index<CARDS_NUMBER){
             int[][][] ints = tirer_carte(cartes);
             shuffledCards[index] = ints[0][0];
             cartes = ints[1];
@@ -47,8 +50,9 @@ public class CardService implements ICardService {
     }
 
     @Override
-    public int[][] defausser_cartes(int[][] pioche, int[][] cartes_a_defausses) {
-        return Collector.collect(pioche,cartes_a_defausses);
+    public int[][] defausser_cartes(int[][]... cards) {
+        System.out.println("[CARDS DISCARDING...]");
+        return Collector.collect(cards);
     }
 
 
@@ -60,10 +64,12 @@ public class CardService implements ICardService {
     }
 
     public int[][][] extraire_ieme_carte(int[][] cards , int n){
-        int[][][] ints = new int[2][cards.length][];
-        ints[0][0] = cards[n];
+        int[][][] ints = new int[2][][];
+        ints[0] = new int[][] {cards[n]};
+        ints[1] = new int[cards.length - 1][];
+        int j = 0;
         for (int i = 0; i < cards.length; i++) {
-            if (i!=n)  ints[1][i] = cards[i];
+            if (i!=n)  ints[1][j++] = cards[i];
         }
         return ints;
     }
