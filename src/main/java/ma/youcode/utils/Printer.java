@@ -20,18 +20,18 @@ public class Printer {
     public static String cardValue(int[] card){
         Objects.requireNonNull(card);
         String symbol = "";
-        switch (card[0]){
+        switch (card[1]){
             case 1 -> symbol = "♠";
             case 2 -> symbol = "♣";
             case 3 -> symbol = "♥";
             case 4 -> symbol = "♦";
         }
-        switch (card[1]){
+        switch (card[0]){
             case 1 -> symbol += "A";
             case 11 -> symbol += "J";
             case 12 -> symbol += "Q";
             case 13 -> symbol += "K";
-            default -> symbol += card[1];
+            default -> symbol += card[0];
         }
         return symbol;
     }
