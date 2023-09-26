@@ -29,7 +29,7 @@ public class GameService implements IGameService{
 
     private static Long _token;
     private static int _piocheIndex = 0;
-    private static Gamer _gamer;
+    public static Gamer _gamer;
     private static int[][] _cards;
     private static int[][] _shuffledCards;
     private static int[][] _bankCards=new int[][]{};
@@ -72,14 +72,14 @@ public class GameService implements IGameService{
                 Lost rounds : %s
                 Current token : %s
                 ******************************* 
-                """,_gamer.getInitialSolde(),_gamer.getPlayedRounds(),_gamer.getWonRounds(),_gamer.getLostRounds(),token));
+                """,_gamer.getInitialSold(),_gamer.getPlayedRounds(),_gamer.getWonRounds(),_gamer.getLostRounds(),token));
         if (player_cards != null || dealer_cards != null) {
             moveToBankCards(player_cards, dealer_cards);
         }
         // TODO : token shouldn't be null
         Objects.requireNonNull(token,"can't start round without token!");
         // TODO : player should have enough money to play with this token
-        if(_gamer.getInitialSolde().longValue() < token){
+        if(_gamer.getInitialSold().longValue() < token){
             throw new IllegalArgumentException("You don't have enough money to play with this token");
         }
         _gamer.incrementPlayedRounds();
@@ -203,7 +203,7 @@ public class GameService implements IGameService{
     @Override
     public  List<String> canPlayWith(){
         return tokens.stream()
-                .filter(token -> token <= _gamer.getInitialSolde().longValue())
+                .filter(token -> token <= _gamer.getInitialSold().longValue())
                 .map(String::valueOf)
                 .toList();
     }

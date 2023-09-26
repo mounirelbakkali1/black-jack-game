@@ -7,7 +7,8 @@ import java.math.BigInteger;
 @Data
 @Builder
 public class Gamer {
-    private BigInteger initialSolde;
+    public static BigInteger INIT = BigInteger.valueOf(0);
+    private BigInteger initialSold;
     private int playedRounds;
     private int wonRounds;
     private int lostRounds;
@@ -20,17 +21,21 @@ public class Gamer {
         this.wonRounds++;
     }
 
+    public void setInitialSold(BigInteger initialSold) {
+        this.initialSold = initialSold;
+        INIT = initialSold;
+    }
     private void incrementLostRounds(){
         this.lostRounds++;
     }
 
     public void decrementSolde(BigInteger solde){
-        this.initialSolde = this.initialSolde.subtract(solde);
+        this.initialSold = this.initialSold.subtract(solde);
     }
 
 
     public void incrementSolde(BigInteger solde){
-        this.initialSolde =  this.initialSolde.add(solde);
+        this.initialSold =  this.initialSold.add(solde);
     }
 
     public void wonRound(BigInteger solde){

@@ -1,12 +1,10 @@
 package ma.youcode.controllers;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import ma.youcode.models.Gamer;
 import ma.youcode.services.IGameService;
 import ma.youcode.utils.ConsoleUtils;
 
-import java.io.Console;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Scanner;
@@ -21,11 +19,11 @@ public class GameController {
         Scanner sc = new Scanner(System.in);
         int sold = ConsoleUtils.readInt("Enter your solde: ", false);
         Gamer gamer = Gamer.builder()
-                .initialSolde(BigInteger.valueOf(sold))
                 .playedRounds(0)
                 .wonRounds(0)
                 .lostRounds(0)
                 .build();
+        gamer.setInitialSold(BigInteger.valueOf(sold));
         _gameService.start(gamer);
         playNewRound(true);
     }
@@ -36,7 +34,7 @@ public class GameController {
             String action = ConsoleUtils.readString("New Round? (y/n) : ", false, new String[]{"y", "n"});
             if (action.equals("n")) {
                 System.out.println("Bye!");
-                System.exit(0);
+                return;
             }
         }
         List<String> canPlayWith = _gameService.canPlayWith();

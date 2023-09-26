@@ -1,0 +1,4 @@
+Gamer x has start  with null DH and has played 1 rounds and won 0 rounds and lost 0 rounds won 950 DH and lost 0 DH
+Gamer x has start  with 0 DH and has played 1 rounds and won 0 rounds and lost 1 rounds quit with -900 DH
+Gamer x has start  with 1000 DH and has played 1 rounds and won 0 rounds and lost 1 rounds quit with 100 DH
+Gamer x has start  with 1000 DH and has played 1 rounds and won 0 rounds and lost 1 rounds quit with -100 DH
